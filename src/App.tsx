@@ -5,7 +5,16 @@ import "./App.css";
 import Layout from "./components/layout";
 import CityPage from "./components/pages/CityPage";
 import WeatherDashboard from "./components/pages/WeatherDashboard";
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 60 * 10,
+      retry: false,
+    },
+  },
+});
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
