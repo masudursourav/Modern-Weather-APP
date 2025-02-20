@@ -1,3 +1,4 @@
+import { GeocodingResponse, WeatherData } from "@/api/types";
 import { useGeolocation } from "@/hooks/use-geolocation";
 import {
   useForecastQuery,
@@ -5,6 +6,7 @@ import {
   useWeatherQuery,
 } from "@/hooks/use-weather";
 import { AlertCircle, MapPin, RefreshCw } from "lucide-react";
+import CurrentWeather from "../currentWeather";
 import WeatherSkeleton from "../loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
@@ -48,7 +50,7 @@ function WeatherDashboard() {
       </Alert>
     );
   }
-  const locationName = locationQuery.data?.[0] ?? "Unknown";
+  const locationName = locationQuery.data?.[0] ?? ({} as GeocodingResponse);
 
   if (weatherQuery.isLoading || forecastQuery.isLoading) {
     return <WeatherSkeleton />;
@@ -86,6 +88,14 @@ function WeatherDashboard() {
             }`}
           />
         </Button>
+      </div>
+      <div className="grid gap-6">
+        <div>
+          <CurrentWeather
+            data={weatherQuery.data ?? ({} as WeatherData)}
+            locationName={locationName ?? ""}
+          />
+        </div>
       </div>
     </div>
   );
