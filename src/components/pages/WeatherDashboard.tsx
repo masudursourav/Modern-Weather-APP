@@ -1,4 +1,4 @@
-import { GeocodingResponse, WeatherData } from "@/api/types";
+import { ForecastData, GeocodingResponse, WeatherData } from "@/api/types";
 import { useGeolocation } from "@/hooks/use-geolocation";
 import {
   useForecastQuery,
@@ -7,6 +7,7 @@ import {
 } from "@/hooks/use-weather";
 import { AlertCircle, MapPin, RefreshCw } from "lucide-react";
 import CurrentWeather from "../currentWeather";
+import HourlyTemperature from "../hourlyTemperature";
 import WeatherSkeleton from "../loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
@@ -90,10 +91,13 @@ function WeatherDashboard() {
         </Button>
       </div>
       <div className="grid gap-6">
-        <div>
+        <div className="flex flex-col lg:flex-row gap-4">
           <CurrentWeather
             data={weatherQuery.data ?? ({} as WeatherData)}
             locationName={locationName ?? ""}
+          />
+          <HourlyTemperature
+            data={forecastQuery.data ?? ({} as ForecastData)}
           />
         </div>
       </div>
