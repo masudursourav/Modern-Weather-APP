@@ -11,6 +11,7 @@ import HourlyTemperature from "../hourlyTemperature";
 import WeatherSkeleton from "../loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
+import WeatherDetails from "../weatherDetails";
 
 function WeatherDashboard() {
   const {
@@ -99,6 +100,9 @@ function WeatherDashboard() {
           <HourlyTemperature
             data={forecastQuery.data ?? ({} as ForecastData)}
           />
+        </div>
+        <div>
+          <WeatherDetails data={weatherQuery.data ?? ({} as WeatherData)} />
         </div>
       </div>
     </div>
