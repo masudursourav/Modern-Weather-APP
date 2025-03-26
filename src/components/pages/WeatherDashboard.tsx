@@ -12,6 +12,7 @@ import WeatherSkeleton from "../loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
 import WeatherDetails from "../weatherDetails";
+import WeatherForecast from "../weatherForecast";
 
 function WeatherDashboard() {
   const {
@@ -101,8 +102,9 @@ function WeatherDashboard() {
             data={forecastQuery.data ?? ({} as ForecastData)}
           />
         </div>
-        <div>
+        <div className="grid gap-2 md:grid-cols-2 items-start">
           <WeatherDetails data={weatherQuery.data ?? ({} as WeatherData)} />
+          <WeatherForecast data={forecastQuery.data ?? ({} as ForecastData)} />
         </div>
       </div>
     </div>
