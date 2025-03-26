@@ -35,27 +35,31 @@ const WeatherDetails = ({ data }: { data: WeatherData }) => {
     },
   ];
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Weather Details</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid sm:grid-cols-2 gap-6">
-          {details.map((detail) => (
-            <div
-              key={detail.title}
-              className="flex items-center gap-3 rounded-lg border p-4"
-            >
-              <detail.icon className={`h-5 w-5 ${detail.color}`} />
-              <div>
-                <p className="text-sm text-muted-foreground">{detail.title}</p>
-                <p className="text-lg font-bold">{detail.value}</p>
+    <div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Weather Details</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {details.map((detail) => (
+              <div
+                key={detail.title}
+                className="flex items-center gap-3 rounded-lg border p-4"
+              >
+                <detail.icon className={`h-5 w-5 ${detail.color}`} />
+                <div>
+                  <p className="text-sm text-muted-foreground">
+                    {detail.title}
+                  </p>
+                  <p className="text-lg font-bold">{detail.value}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
