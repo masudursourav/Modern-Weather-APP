@@ -1,6 +1,7 @@
 import { useTheme } from "@/contex/theme-provider";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
+import CitySearch from "./citySearch";
 import { Button } from "./ui/button";
 
 function Header() {
@@ -14,7 +15,8 @@ function Header() {
             <span className="text-2xl"> Weather App</span>
           </Link>
         </div>
-        <div>
+        <div className="flex items-center space-x-4">
+          <CitySearch />
           <Button
             variant={"ghost"}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
