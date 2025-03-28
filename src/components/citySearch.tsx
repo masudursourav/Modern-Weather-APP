@@ -31,7 +31,7 @@ function CitySearch() {
       lat: parseFloat(lat),
       lon: parseFloat(lon),
     });
-    navigate(`/city/${name}?${country}??${lat}&${lon}`);
+    navigate(`/city/${name}?${lat}&${lon}`);
     setQuery("");
     setOpen(false);
   };
@@ -78,7 +78,7 @@ function CitySearch() {
                 </div>
                 {history.map((location) => (
                   <CommandItem
-                    key={`${location.lat}-${location.lon}`}
+                    key={`${location.lat}-${location.lon}-${location.name}-${location.searchedAt}`}
                     value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
                     onSelect={handleSelect}
                   >
