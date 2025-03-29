@@ -1,8 +1,9 @@
+import { useFavorite } from "@/hooks/use-favorite";
 import { useSearchHistory } from "@/hooks/use-search-history";
 import { useLocationSearch } from "@/hooks/use-weather";
 import { CommandSeparator } from "cmdk";
 import { format } from "date-fns";
-import { Clock, Loader2, Search, XCircle } from "lucide-react";
+import { Clock, Loader2, Search, Star, XCircle } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -21,6 +22,7 @@ function CitySearch() {
   const { data: locations, isLoading } = useLocationSearch(query);
   const { history, addSearchHistoryItem, clearSearchHistoryItem } =
     useSearchHistory();
+  const { favorites } = useFavorite();
   const navigate = useNavigate();
   const handleSelect = (cityData: string) => {
     const [lat, lon, name, country] = cityData.split("|");
@@ -55,10 +57,39 @@ function CitySearch() {
           {query.length > 2 && !!isLoading && (
             <CommandEmpty>No Cities Found...</CommandEmpty>
           )}
-          <CommandGroup heading="Favorites">
-            <CommandItem>Calendar</CommandItem>
-          </CommandGroup>
-
+          {favorites && favorites.length > 0 && (
+            <>
+              <CommandSeparator />
+              <CommandGroup>
+                <div className="flex justify-between items-center px-2 py-2">
+                  <p className="text-xs text-muted-foreground">
+                    Favorite Cities
+                  </p>
+                </div>
+                {favorites.map((location) => (
+                  <CommandItem
+                    key={`${location.lat}-${location.lon}`}
+                    value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                    onSelect={handleSelect}
+                  >
+                    <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                    <span>{location.name}</span>
+                    {location.state && (
+                      <span className="text-muted-foreground">
+                        , {location.state}
+                      </span>
+                    )}
+                    <span className="text-muted-foreground">
+                      , {location.country}
+                    </span>
+                    <span className="text-muted-foreground">
+                      , {format(location.addedAt, "MMM dd, h:mm a")}
+                    </span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          )}
           {history && history.length > 0 && (
             <>
               <CommandSeparator />

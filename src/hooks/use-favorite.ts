@@ -41,17 +41,18 @@ export function useFavorite() {
 
   const clearFavoriteItem = useMutation({
     mutationFn: async (cityId: string) => {
-      const newFavorites = favorites.filter((item) => item.id !== cityId);
+      const newFavorites = favorites.filter((city) => city.id !== cityId);
       setFavorites(newFavorites);
       return newFavorites;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "favoriteCities" });
+      queryClient.invalidateQueries({ queryKey: ["favoriteCities"] });
     },
   });
   return {
     favorites: favoriteQuery.data,
     addFavoriteItem,
+    refetchFavorites: favoriteQuery.refetch,
     clearFavoriteItem,
     isFavorite: (lat: number, lon: number) => {
       return favorites.some((item) => item.lat === lat && item.lon === lon);
