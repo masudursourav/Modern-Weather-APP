@@ -7,6 +7,7 @@ import {
 } from "@/hooks/use-weather";
 import { AlertCircle, MapPin, RefreshCw } from "lucide-react";
 import CurrentWeather from "../currentWeather";
+import FavoriteCities from "../favoriteCities";
 import HourlyTemperature from "../hourlyTemperature";
 import WeatherSkeleton from "../loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -77,6 +78,7 @@ function WeatherDashboard() {
   }
   return (
     <div className="space-y-4">
+      <FavoriteCities />
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-bold tracking-tight">My Location</h1>
         <Button
