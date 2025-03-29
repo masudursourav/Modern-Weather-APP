@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "sonner";
 import "./App.css";
 import Layout from "./components/layout";
 import CityPage from "./components/pages/CityPage";
@@ -25,6 +26,7 @@ function App() {
             <Route path="city/:cityName" element={<CityPage />} />
           </Routes>
         </Layout>
+        <Toaster richColors />
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

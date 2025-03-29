@@ -31,7 +31,7 @@ function CitySearch() {
       lat: parseFloat(lat),
       lon: parseFloat(lon),
     });
-    navigate(`/city/${name}?${lat}&${lon}`);
+    navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
     setQuery("");
     setOpen(false);
   };
