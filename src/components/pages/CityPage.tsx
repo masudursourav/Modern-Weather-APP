@@ -6,6 +6,7 @@ import CurrentWeather from "../currentWeather";
 import HourlyTemperature from "../hourlyTemperature";
 import WeatherSkeleton from "../loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import FavoriteButton from "../ui/favoriteButton";
 import WeatherDetails from "../weatherDetails";
 import WeatherForecast from "../weatherForecast";
 
@@ -14,6 +15,8 @@ function CityPage() {
   const params = useParams();
   const lat = parseFloat(searchParams.get("lat") || "0");
   const lon = parseFloat(searchParams.get("lon") || "0");
+  console.log("lat", lat);
+  console.log("lon", lon);
   const coordinates = { lat, lon };
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
@@ -31,7 +34,6 @@ function CityPage() {
       </Alert>
     );
   }
-  console.log(params.cityName);
   if (weatherQuery.isLoading || forecastQuery.isLoading || !params.cityName) {
     return <WeatherSkeleton />;
   }
@@ -39,6 +41,13 @@ function CityPage() {
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold tracking-tight">{params.cityName}</h1>
+        <div>
+          <FavoriteButton
+            data={
+              { ...weatherQuery.data, name: params.cityName } as WeatherData
+            }
+          />
+        </div>
       </div>
       <div className="grid gap-6">
         <div className="flex flex-col gap-4">
