@@ -42,7 +42,7 @@ graph TD;
    ```
 2. **Install dependencies:**
    ```sh
-   npm install
+   yarn
    ```
 3. **Set up API key:**
    - Get a free API key from [OpenWeatherMap](https://openweathermap.org/api)
@@ -52,7 +52,7 @@ graph TD;
      ```
 4. **Run the app:**
    ```sh
-   npm run dev
+   yarn dev
    ```
 5. **Open in browser:**
    Visit [http://localhost:3000](http://localhost:3000)
