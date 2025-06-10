@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/contex/theme-provider";
+import { ThemeProvider } from "@/context/theme-provider";
 import Header from "./header";
 
 function Layout({ children }: { children: React.ReactNode }) {

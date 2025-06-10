@@ -35,7 +35,7 @@ export function useFavorite() {
       return newCity;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "favoriteCities" });
+      queryClient.invalidateQueries({ queryKey: ["favoriteCities"] });
     },
   });
 

@@ -1,4 +1,4 @@
-import { useTheme } from "@/contex/theme-provider";
+import { useTheme } from "@/context/theme-provider";
 import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 import CitySearch from "./citySearch";
